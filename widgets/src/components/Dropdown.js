@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DropdownCss from './dropdown.css';
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
@@ -36,21 +36,21 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
     );
   });
 
-  const renderedColor = options.map((option) => {
-    if (option.text !== selected.text) {
-      return null;
-    }
-    return (
-      <div key={option.text} onClick={() => onSelectedChange(option)}>
-        <h3 className={option.value}>The Text is {option.text}</h3>
-      </div>
-    );
-  });
+  // const renderedColor = options.map((option) => {
+  //   if (option.text !== selected.text) {
+  //     return null;
+  //   }
+  //   return (
+  //     <div key={option.text} onClick={() => onSelectedChange(option)}>
+  //       <h3 className={option.value}>The Text is {option.text}</h3>
+  //     </div>
+  //   );
+  // });
 
   return (
     <div ref={ref} className="ui form">
       <div className="field">
-        <label className="label">Select a Color</label>
+        <label className="label">{label}</label>
         <div
           onClick={() => setOpen(!open)}
           className={`ui selection dropdown ${open ? 'visible active' : ''}`}
@@ -65,7 +65,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
           </div>
         </div>
       </div>
-      {renderedColor}
+      {/* {renderedColor} */}
     </div>
   );
 };
